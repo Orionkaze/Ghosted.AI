@@ -35,7 +35,7 @@ export default function LandingPage() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border text-xs font-medium text-text-secondary mb-4">
             <span className="flex h-2 w-2 rounded-full bg-teal animate-pulse" />
-            GPT-4o Powered Analysis
+            Gemini Powered Analysis
           </div>
           
           <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight tracking-tight">
@@ -108,7 +108,7 @@ export default function LandingPage() {
               { icon: "fa-clock", title: "Response Time Tracking", desc: "See exactly how long it takes them to text back over time." },
               { icon: "fa-scale-unbalanced", title: "Investment Ratio", desc: "Find out who is actually carrying the conversation." },
               { icon: "fa-flag", title: "Red Flag Detection", desc: "Automated alerts for ghosting signals and fading interest." },
-              { icon: "fa-brain", title: "AI Brutal Honesty", desc: "GPT-4o delivers the truth you probably don't want to hear." }
+              { icon: "fa-brain", title: "AI Brutal Honesty", desc: "Gemini delivers the truth you probably don't want to hear." }
             ].map((feature, i) => (
               <div key={i} className="bg-surface border border-border p-6 rounded-2xl hover:border-teal/50 transition-colors">
                 <i className={`fa-solid ${feature.icon} text-2xl text-teal mb-4`} />
@@ -131,7 +131,7 @@ export default function LandingPage() {
             {[
               { q: "Is my chat data saved?", a: "No. Your chat is processed in memory and immediately discarded. We don't have a database, and we couldn't read your chats even if we wanted to." },
               { q: "What chat platforms are supported?", a: "Currently, we only support WhatsApp .txt exports (without media). We're working on adding iMessage and Telegram support soon." },
-              { q: "How accurate is the AI?", a: "It's powered by GPT-4o, which is scarily good at reading between the lines. But remember, it's just an AI—don't make major life decisions based solely on its roast." }
+              { q: "How accurate is the AI?", a: "It's powered by Gemini, which is scarily good at reading between the lines. But remember, it's just an AI—don't make major life decisions based solely on its roast." }
             ].map((faq, i) => (
               <div key={i} className="bg-surface border border-border p-6 rounded-2xl">
                 <h3 className="font-medium text-lg mb-2 text-text-primary">{faq.q}</h3>

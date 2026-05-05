@@ -1,13 +1,12 @@
-const OpenAI = require('openai');
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const { GoogleGenAI } = require('@google/genai');
 
 const generateInsights = async (metrics) => {
-  if (!process.env.OPENAI_API_KEY) {
-    throw new Error("Missing OpenAI API Key");
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    throw new Error("Missing Gemini API Key");
   }
+
+  const ai = new GoogleGenAI({ apiKey });
 
   const prompt = `
   You are Ghosted.AI, a brutally honest, slightly sarcastic, highly analytical dating coach and behavioral data scientist.
@@ -30,23 +29,25 @@ const generateInsights = async (metrics) => {
   `;
 
   try {
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o",
-      messages: [{ role: "system", content: prompt }],
-      response_format: { type: "json_object" },
-      temperature: 0.7,
+    const response = await ai.models.generateContent({
+      model: 'gemini-2.5-flash',
+      contents: prompt,
+      config: {
+        responseMimeType: "application/json",
+        temperature: 0.7,
+      }
     });
 
-    const content = response.choices[0].message.content;
+    const content = response.text;
     return JSON.parse(content);
   } catch (error) {
-    console.error("OpenAI API Error:", error);
+    console.error("Gemini API Error:", error);
     // Fallback response if AI fails
     return {
       interest_score: 50,
       more_invested: "Unknown",
       ghosting_signs: ["Could not connect to AI brain"],
-      summary: "We failed to connect to OpenAI, so we can't roast you right now. Maybe you're fine."
+      summary: "We failed to connect to Gemini, so we can't roast you right now. Maybe you're fine."
     };
   }
 };

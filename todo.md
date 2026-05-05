@@ -6,7 +6,7 @@
 - [x] Install required dependencies (Recharts, Motion.dev, Font Awesome, etc.)
 - [x] Setup Express.js backend server structure
 - [x] Scaffold project file structure (`app/`, `components/`, `lib/`, `server/`)
-- [x] Configure environment variables (OpenAI API Key, ports)
+- [x] Configure environment variables (Gemini API Key, ports)
 
 ## Phase 2: Frontend Foundation & Design System
 - [x] Import and configure Google Fonts (Space Grotesk, Inter, JetBrains Mono)
@@ -39,7 +39,7 @@
   - [x] Implement WhatsApp `.txt` parser (`[DD/MM/YYYY, HH:MM:SS] Sender: Message`)
   - [x] Implement metrics computation (Response Time, Message Length, Initiation Ratio, Engagement Signals)
 - [x] **AI Integration**
-  - [x] Integrate OpenAI GPT-4o API
+  - [x] Integrate Gemini 2.5 Flash API
   - [x] Construct AI prompt with computed metrics
   - [x] Validate and enforce strict JSON output
 
@@ -50,7 +50,7 @@
   - [x] Initiation Ratio (Donut chart / Bar)
 - [x] Integrate frontend Dashboard with `/analyze` backend response
 - [x] Wire up Metric Cards with actual data (Interest Score, More Invested, etc.)
-- [x] Populate AI Insight Card with OpenAI summary and Red Flag tags
+- [x] Populate AI Insight Card with Gemini summary and Red Flag tags
 
 ## Phase 6: Polish, Animations & Edge Cases
 - [x] Implement Motion.dev animations (Page transitions, score counter, hover effects)
