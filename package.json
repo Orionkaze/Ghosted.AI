@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
@@ -18,7 +19,8 @@
     "openai": "^6.36.0",
     "react": "^18",
     "react-dom": "^18",
-    "recharts": "^3.8.1"
+    "recharts": "^3.8.1",
+    "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
     "@types/node": "^20",
