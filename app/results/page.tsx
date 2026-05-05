@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/Badge";
 import { ScoreRing } from "@/components/ui/ScoreRing";
 import { ResponseTimeChart } from "@/components/charts/ResponseTimeChart";
 import { MessageLengthChart } from "@/components/charts/MessageLengthChart";
+import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 
 // Mock Data
@@ -38,14 +39,12 @@ export default function ResultsPage() {
           </h1>
         </div>
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border text-text-secondary hover:bg-surface transition-colors">
-            <i className="fa-solid fa-share-nodes" />
-            Share
-          </button>
-          <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-teal/10 text-teal hover:bg-teal/20 transition-colors border border-teal/20">
-            <i className="fa-solid fa-download" />
-            Export Report
-          </button>
+          <Button variant="secondary" size="sm" onClick={() => alert('Share feature coming soon!')}>
+            <i className="fa-solid fa-share-nodes mr-2" /> Share
+          </Button>
+          <Button variant="primary" size="sm" onClick={() => alert('Export feature coming soon!')}>
+            <i className="fa-solid fa-download mr-2" /> Export Report
+          </Button>
         </div>
       </header>
 
