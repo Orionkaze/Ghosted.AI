@@ -32,16 +32,16 @@
   - [x] AI Insight card placeholder
 
 ## Phase 4: Core Logic & Backend Implementation
-- [ ] **Backend (Express)**
-  - [ ] Set up `multer` for file upload handling (in-memory processing)
-  - [ ] Create `/analyze` API route
-- [ ] **Parsing & Metrics**
-  - [ ] Implement WhatsApp `.txt` parser (`[DD/MM/YYYY, HH:MM:SS] Sender: Message`)
-  - [ ] Implement metrics computation (Response Time, Message Length, Initiation Ratio, Engagement Signals)
-- [ ] **AI Integration**
-  - [ ] Integrate OpenAI GPT-4o API
-  - [ ] Construct AI prompt with computed metrics
-  - [ ] Validate and enforce strict JSON output
+- [x] **Backend (Express)**
+  - [x] Set up `multer` for file upload handling (in-memory processing)
+  - [x] Create `/analyze` API route
+- [x] **Parsing & Metrics**
+  - [x] Implement WhatsApp `.txt` parser (`[DD/MM/YYYY, HH:MM:SS] Sender: Message`)
+  - [x] Implement metrics computation (Response Time, Message Length, Initiation Ratio, Engagement Signals)
+- [x] **AI Integration**
+  - [x] Integrate OpenAI GPT-4o API
+  - [x] Construct AI prompt with computed metrics
+  - [x] Validate and enforce strict JSON output
 
 ## Phase 5: Data Visualization & Integration
 - [ ] Build Recharts components:
