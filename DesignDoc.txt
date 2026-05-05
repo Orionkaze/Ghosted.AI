@@ -1,0 +1,702 @@
+# 🧠 Ghosted.AI — Design Document
+
+> **Tagline:** Turning emotional damage into analytics.
+
+---
+
+## 📋 Table of Contents
+
+1. [Project Overview](#project-overview)
+2. [Goals & Philosophy](#goals--philosophy)
+3. [Target Users](#target-users)
+4. [Design Language](#design-language)
+5. [Typography](#typography)
+6. [Color Palette](#color-palette)
+7. [Icons](#icons)
+8. [Animations & Transitions](#animations--transitions)
+9. [Page-by-Page UI Spec](#page-by-page-ui-spec)
+10. [Component Library](#component-library)
+11. [Core Features Spec](#core-features-spec)
+12. [AI Analysis Engine](#ai-analysis-engine)
+13. [Tech Stack](#tech-stack)
+14. [File Structure](#file-structure)
+15. [Constraints & Edge Cases](#constraints--edge-cases)
+16. [Non-Goals (MVP)](#non-goals-mvp)
+17. [Success Metrics](#success-metrics)
+18. [Future Scope](#future-scope)
+
+---
+
+## 🏷️ Project Overview
+
+**Ghosted.AI** is a web application that analyzes exported chat conversations to detect emotional trends, interest levels, and ghosting patterns — powered by AI and behavioral metrics. It transforms raw chat data into a brutally honest, slightly sarcastic analytical report that tells users what they probably already suspected.
+
+---
+
+## 🎯 Goals & Philosophy
+
+### Core Objective
+
+Build a fast, engaging web app that:
+
+- Parses and analyzes chat conversations from exported files
+- Detects interest levels and engagement trends over time
+- Identifies early and late-stage ghosting signals
+- Delivers an AI-generated summary that is honest, data-backed, and darkly funny
+
+### Product Philosophy
+
+> *If it feels too safe → it's boring. If it feels too harsh → users won't return.*
+
+The product must balance honesty with humor. Every insight should feel like a smart friend telling you the truth — not a therapist, not a bully. The UI should match: clean, dark, and slightly uncomfortable in the best way.
+
+---
+
+## 👤 Target Users
+
+| Persona | Description |
+|---|---|
+| 🧑‍🎓 Gen Z / Students | Digitally native, emotionally messy, love data that validates feelings |
+| 💘 Dating App Users | Upload Hinge/Tinder/DM convos to get clarity |
+| 🤔 Overthinkers | People who screenshot conversations and send to group chats |
+| 👻 The Ghosted | Anyone who has ever been left on read and deserved better |
+
+---
+
+## 🎨 Design Language
+
+### Visual Aesthetic
+
+Ghosted.AI's design is inspired by modern data dashboards — think Bloomberg Terminal meets dating app — with a dark, cinematic feel. The UI should feel premium and analytical, not playful or bubbly.
+
+**Core Aesthetic Pillars:**
+
+- **Dark & moody** — Deep navy/black backgrounds, glass morphism cards
+- **Data-forward** — Everything feels like a live analytics dashboard
+- **Subtle sarcasm** — Microcopy and labels carry the personality; the UI stays clean
+- **Cinematic depth** — Layered backgrounds, glowing accents, subtle particle or aurora effects
+
+### Layout Principles
+
+- Max content width: `1280px`, centered
+- Consistent `24px` grid padding on all sides
+- Cards use `border-radius: 16px` with `backdrop-filter: blur(12px)`
+- Generous whitespace — never crowded
+- Responsive: Mobile-first, scales up to desktop
+
+---
+
+## 🔤 Typography
+
+**Font Source:** [Google Fonts](https://fonts.google.com/)
+
+| Role | Font | Weight | Usage |
+|---|---|---|---|
+| Display / Hero | **Space Grotesk** | 700 | Hero headlines, score display |
+| Body / UI | **Inter** | 400, 500, 600 | All body text, labels, descriptions |
+| Monospace / Data | **JetBrains Mono** | 400, 500 | Timestamps, metrics, JSON output |
+
+### Type Scale
+
+| Token | Size | Font | Use |
+|---|---|---|---|
+| `--text-hero` | 56px | Space Grotesk 700 | Landing headline |
+| `--text-h1` | 36px | Space Grotesk 700 | Page titles |
+| `--text-h2` | 24px | Space Grotesk 600 | Section headers |
+| `--text-h3` | 18px | Inter 600 | Card titles |
+| `--text-body` | 16px | Inter 400 | Paragraphs |
+| `--text-small` | 14px | Inter 400 | Captions, helper text |
+| `--text-mono` | 14px | JetBrains Mono 400 | Metric values, timestamps |
+
+### Google Fonts Import
+
+```html
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+```
+
+---
+
+## 🎨 Color Palette
+
+Inspired by the reference dashboard — deep navy backgrounds, teal/green data accents, and glass morphism panels.
+
+### Base Colors
+
+| Token | Hex | Usage |
+|---|---|---|
+| `--color-bg-primary` | `#030B14` | Main page background |
+| `--color-bg-secondary` | `#071525` | Card backgrounds |
+| `--color-bg-elevated` | `#0D2137` | Elevated panels, sidebars |
+| `--color-surface` | `rgba(255,255,255,0.04)` | Glass card surface |
+| `--color-border` | `rgba(255,255,255,0.08)` | Card borders |
+
+### Accent Colors
+
+| Token | Hex | Usage |
+|---|---|---|
+| `--color-teal` | `#00E5C0` | Primary CTA, active states, highlights |
+| `--color-teal-dim` | `#00B89A` | Hover states |
+| `--color-green` | `#1DF08B` | Positive metrics, high interest score |
+| `--color-blue` | `#1A8FFF` | Secondary charts, secondary data |
+| `--color-red` | `#FF4560` | Ghosting indicators, red flags |
+| `--color-yellow` | `#FFB830` | Warning signals, mid-range scores |
+
+### Text Colors
+
+| Token | Hex | Usage |
+|---|---|---|
+| `--color-text-primary` | `#F0F6FF` | Headlines, primary text |
+| `--color-text-secondary` | `#7A9CBB` | Subtitles, descriptions |
+| `--color-text-muted` | `#3E5A73` | Disabled, placeholder |
+
+### Glow Effects (used sparingly)
+
+```css
+/* Teal card glow */
+box-shadow: 0 0 40px rgba(0, 229, 192, 0.08), 0 4px 24px rgba(0,0,0,0.4);
+
+/* Red flag glow */
+box-shadow: 0 0 30px rgba(255, 69, 96, 0.12);
+```
+
+---
+
+## 🔣 Icons
+
+**Icon Library:** [Font Awesome 6](https://fontawesome.com/) — Free tier (Solid + Regular + Brands)
+
+**Import (CDN):**
+
+```html
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+```
+
+### Icon Usage Map
+
+| Context | Icon | FA Class |
+|---|---|---|
+| Upload / File | Upload arrow | `fa-solid fa-file-arrow-up` |
+| Chat / Message | Conversation | `fa-solid fa-comments` |
+| Ghost / Ghosting | Ghost | `fa-solid fa-ghost` |
+| Interest Score | Heart pulse | `fa-solid fa-heart-pulse` |
+| Response Time | Clock | `fa-solid fa-clock` |
+| Message Length | Bars chart | `fa-solid fa-chart-column` |
+| Initiation Ratio | Person raising hand | `fa-solid fa-hand` |
+| Emoji Analysis | Face emoji | `fa-solid fa-face-smile-wink` |
+| Red Flag | Flag | `fa-solid fa-flag` |
+| Warning | Triangle | `fa-solid fa-triangle-exclamation` |
+| AI Insight | Brain | `fa-solid fa-brain` |
+| Share | Share nodes | `fa-solid fa-share-nodes` |
+| Download | Arrow down | `fa-solid fa-download` |
+| WhatsApp | Brand icon | `fa-brands fa-whatsapp` |
+| Loading / Spinner | Spinner | `fa-solid fa-circle-notch fa-spin` |
+| Analytics | Trend up | `fa-solid fa-chart-line` |
+| Settings | Gear | `fa-solid fa-gear` |
+
+### Icon Style Rules
+
+- Always use with `--color-teal` for active/primary contexts
+- Use `--color-text-secondary` for neutral/informational icons
+- Use `--color-red` for ghosting/red-flag icons
+- Size: `16px` for inline, `24px` for card headers, `40px` for hero sections
+- Never use icons without a label for accessibility
+
+---
+
+## ✨ Animations & Transitions
+
+**Libraries:**
+
+- [Motion.dev](https://motion.dev/) — For component animations, scroll effects, layout transitions
+- [21st.dev](https://21st.dev/home) — For pre-built animated UI primitives and micro-interactions
+
+### Motion Principles
+
+- **Purposeful** — Every animation communicates something (loading, state change, reveal)
+- **Fast** — Default duration: `200–400ms`. Nothing lingers.
+- **Eased** — Use `ease-out` for entrances, `ease-in` for exits
+- **Non-blocking** — Animations never prevent interaction
+
+### Animation Tokens
+
+| Token | Value | Use |
+|---|---|---|
+| `--duration-fast` | `150ms` | Hover states, button presses |
+| `--duration-base` | `300ms` | Card reveals, state transitions |
+| `--duration-slow` | `600ms` | Page transitions, chart draws |
+| `--easing-default` | `cubic-bezier(0.16, 1, 0.3, 1)` | General entrance |
+| `--easing-bounce` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | Score counter pop |
+
+### Key Animations (Motion.dev)
+
+```javascript
+// Page section entrance
+animate(element, 
+  { opacity: [0, 1], y: [24, 0] }, 
+  { duration: 0.4, easing: [0.16, 1, 0.3, 1] }
+)
+
+// Interest Score counter (0 → final value)
+animate(scoreEl, 
+  { innerText: [0, finalScore] }, 
+  { duration: 1.2, easing: 'ease-out' }
+)
+
+// Card hover lift
+animate(card, 
+  { y: -4, boxShadow: '0 8px 40px rgba(0,229,192,0.15)' }, 
+  { duration: 0.2 }
+)
+
+// Drag-over pulse on upload zone
+animate(dropzone, 
+  { scale: [1, 1.02, 1] }, 
+  { duration: 0.4, repeat: Infinity }
+)
+```
+
+### Transition Spec Per Interaction
+
+| Interaction | Animation |
+|---|---|
+| Page load | Staggered fade-up of sections (60ms delay between each) |
+| File drag-over | Drop zone scales up + border pulses teal |
+| File upload progress | Animated progress bar fills left to right |
+| Analysis loading | Brain icon pulses + skeleton loaders on cards |
+| Charts reveal | Lines/bars animate in from bottom on scroll enter |
+| Score reveal | Number counts up dramatically, then settles |
+| Red flag appear | Slide in from right with red glow flash |
+| CTA button hover | Slight scale up + glow intensifies |
+
+---
+
+## 📄 Page-by-Page UI Spec
+
+### 1. Landing Page
+
+**Purpose:** Convert visitors to uploaders. Fast. No friction.
+
+**Layout:**
+
+```
+┌─────────────────────────────────────────┐
+│  [Logo + Nav]                           │
+├─────────────────────────────────────────┤
+│                                         │
+│     🧠  Ghosted.AI                     │
+│   Turning emotional damage              │
+│       into analytics.                   │
+│                                         │
+│   [ Upload Your Chat → ]               │
+│                                         │
+│   [Preview of dashboard in background] │
+├─────────────────────────────────────────┤
+│  How It Works  |  Features  |  Footer  │
+└─────────────────────────────────────────┘
+```
+
+**Key Elements:**
+
+- **Hero Headline:** "Turning emotional damage into analytics." — Space Grotesk 700, 56px
+- **Subheadline:** "Upload your chat. Get the truth." — Inter 400, 20px, `--color-text-secondary`
+- **CTA Button:** "Analyze My Chat" — teal filled, `fa-solid fa-arrow-right` icon, hover glow
+- **Background:** Dark with subtle animated aurora/particle mesh using CSS or Motion.dev
+- **Social Proof Bar:** "10,000+ chats analyzed. 9,400+ cases of emotional unavailability confirmed."
+- **How It Works Section:** 3-step horizontal flow with animated connector line
+  1. `fa-file-arrow-up` Upload Chat
+  2. `fa-brain` AI Analyzes
+  3. `fa-chart-line` Get the Truth
+
+---
+
+### 2. Upload Page
+
+**Purpose:** Seamless, drag-and-drop file upload experience.
+
+**Layout:**
+
+```
+┌─────────────────────────────────────────┐
+│  ← Back         Ghosted.AI             │
+├─────────────────────────────────────────┤
+│                                         │
+│   Step 1 of 2: Upload Your Chat        │
+│                                         │
+│  ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐  │
+│  |  fa-file-arrow-up                |  │
+│  |  Drag & drop your .txt file      |  │
+│  |  or click to browse              |  │
+│  |  Max size: 5MB                   |  │
+│  └ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘  │
+│                                         │
+│  [████████░░░░░░░░░]  Uploading... 60% │
+│                                         │
+│  Supported: WhatsApp .txt export       │
+│  fa-brands fa-whatsapp                 │
+└─────────────────────────────────────────┘
+```
+
+**States:**
+
+| State | Visual |
+|---|---|
+| Default | Dashed teal border, ghost icon centered |
+| Drag Over | Border pulses, zone scales up slightly, background brightens |
+| Uploading | Progress bar fills, spinner animates |
+| Complete | Checkmark animates in, auto-advance to results |
+| Error | Border turns red, error message with `fa-triangle-exclamation` |
+
+**Privacy Note:** Small text below the uploader — "Your chat is analyzed in-session only. We never store your messages."
+
+---
+
+### 3. Results Dashboard
+
+**Purpose:** The core product experience. Show the full analysis.
+
+**Layout:**
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  🧠 Ghosted.AI            [fa-share-nodes] [fa-download]│
+├──────────────┬──────────────────────────────────────────┤
+│              │  ┌──────────┐ ┌──────────┐ ┌──────────┐ │
+│  SIDEBAR     │  │ Interest │ │ Initiation│ │ Avg Resp │ │
+│              │  │  Score   │ │  Ratio   │ │  Time    │ │
+│  Overview    │  │   72/100 │ │  You 68% │ │  4.2 hrs │ │
+│  Response    │  └──────────┘ └──────────┘ └──────────┘ │
+│  Messages    │                                          │
+│  Initiation  │  [Response Time Graph]                   │
+│  AI Insight  │                                          │
+│              │  [Message Length Trend]                  │
+│              │                                          │
+│              │  ┌──────────────────────────────────┐   │
+│              │  │ 🧠 AI Insight Card               │   │
+│              │  │ Interest Score: 72               │   │
+│              │  │ More Invested: You               │   │
+│              │  │ Red Flags: [tag] [tag]           │   │
+│              │  │ Summary: "You're texting first..."│  │
+│              │  └──────────────────────────────────┘   │
+└──────────────┴──────────────────────────────────────────┘
+```
+
+**Metric Cards (Top Row):**
+
+Each card uses glass morphism, teal icon, and a large mono-font number.
+
+| Card | Icon | Value Type |
+|---|---|---|
+| Interest Score | `fa-heart-pulse` | `0–100` with color coding |
+| More Invested | `fa-scale-unbalanced` | "You" or "Them" |
+| Initiation Ratio | `fa-hand` | Percentage |
+| Avg Response Time | `fa-clock` | Hours/Minutes |
+
+**Charts Section:**
+
+All charts use **Recharts** with the brand color tokens.
+
+1. **Response Time Trend** — Line chart, dual lines (You vs Them), X-axis = dates
+2. **Message Length Trend** — Area chart, showing engagement decay if present
+3. **Initiation Ratio** — Donut chart or side-by-side bar
+
+**AI Insight Card:**
+
+- Full-width card at the bottom
+- `fa-brain` icon in teal header
+- Interest Score displayed large with color indicator (green → yellow → red)
+- Ghosting Signs shown as badge tags with `fa-flag` icon
+- Summary text in a styled blockquote with slightly dimmed background
+- Sarcastic tone reflected in microcopy (e.g., "Verdict: You're doing the most.")
+
+---
+
+## 🧩 Component Library
+
+### Button Variants
+
+```
+Primary:   [Analyze My Chat →]     — teal bg, dark text, hover: glow
+Secondary: [Export Report]         — ghost border, teal text, hover: fill
+Danger:    [Clear Upload]          — red border, hover: red fill
+Icon Only: [fa-share-nodes]        — icon button, tooltip on hover
+```
+
+### Cards
+
+```
+Glass Card:    backdrop-blur, surface bg, subtle border, rounded-2xl
+Metric Card:   glass card + large number + icon header
+Insight Card:  glass card + AI badge + body text + tags
+```
+
+### Badge / Tag
+
+```
+Red Flag Tag:    [🚩 Left on read for 3+ days]  — red bg dim, red text
+Neutral Tag:     [📊 Declining message length]   — surface bg, secondary text
+```
+
+### Progress Bar
+
+```
+[████████████░░░░░░░░] 62%
+— teal fill, rounded, animated width transition
+```
+
+### Score Ring / Gauge
+
+```
+Circular SVG gauge — 0 to 100
+Color: green (70+), yellow (40–69), red (<40)
+Animated stroke draw on mount
+```
+
+---
+
+## ⚙️ Core Features Spec
+
+### 1. Chat Upload & Parsing
+
+**Accepted Format:** WhatsApp `.txt` export
+
+**Parsing Logic:**
+
+```
+Pattern: [DD/MM/YYYY, HH:MM:SS] Sender: Message
+Output: Array of { sender, timestamp, message, wordCount }
+```
+
+**Validations:**
+- File must be `.txt`
+- Max size: 5MB
+- Minimum: 20 messages to produce meaningful analysis
+- Handle malformed lines gracefully (skip and flag)
+
+---
+
+### 2. Conversation Metrics Engine
+
+| Metric | Calculation |
+|---|---|
+| **Response Time** | Timestamp delta between consecutive messages of alternating senders |
+| **Response Time Trend** | Rolling average over time — detect if getting slower |
+| **Message Length** | Word count per message, averaged per sender per week |
+| **Initiation Ratio** | Count of conversation starts per sender / total starts |
+| **Emoji Usage** | Regex match on emoji unicode ranges per sender |
+| **Laughter Signals** | Match: `lol`, `lmao`, `haha`, `hehe`, `💀`, `😂` per sender |
+| **Ghosting Signals** | Response gaps > 24hrs, trailing off message length, initiation imbalance > 70% |
+
+---
+
+### 3. AI Analysis Engine
+
+**Model:** OpenAI GPT-4o (or GPT-4-turbo)
+
+**System Prompt Tone:** Honest, direct, slightly sarcastic. Like a very smart friend who's seen this pattern before.
+
+**Input to AI:** Computed metrics JSON
+
+**Required Output (strict JSON):**
+
+```json
+{
+  "interest_score": 72,
+  "more_invested": "User",
+  "ghosting_signs": [
+    "Response time increased 3x in the last 2 weeks",
+    "They initiate only 18% of conversations"
+  ],
+  "summary": "You text first. They reply eventually. Classic situationship energy."
+}
+```
+
+**Prompt Engineering Notes:**
+- Instruct model to respond ONLY in the JSON schema above
+- Include computed metrics in user message
+- Validate JSON on response before rendering
+- Fallback: if parse fails, retry once then show generic error
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 14 (App Router) |
+| Styling | Tailwind CSS |
+| Charts | Recharts |
+| Icons | Font Awesome 6 (CDN) |
+| Fonts | Google Fonts (Space Grotesk, Inter, JetBrains Mono) |
+| Animations | Motion.dev + 21st.dev components |
+
+### Backend
+
+| Layer | Technology |
+|---|---|
+| Runtime | Node.js |
+| Framework | Express.js |
+| File Handling | Multer (file upload middleware) |
+| AI | OpenAI API (GPT-4o) |
+
+### Infrastructure (MVP)
+
+| Concern | Solution |
+|---|---|
+| Hosting | Vercel (frontend) |
+| API Hosting | Railway or Render (backend) |
+| Database | None (MVP — stateless, session-only) |
+| File Storage | None (process in memory, never persist) |
+
+---
+
+## 📁 File Structure
+
+```
+ghosted-ai/
+├── app/                        # Next.js App Router
+│   ├── page.tsx                # Landing page
+│   ├── upload/
+│   │   └── page.tsx            # Upload page
+│   ├── results/
+│   │   └── page.tsx            # Results dashboard
+│   └── layout.tsx              # Root layout + font imports
+│
+├── components/
+│   ├── ui/                     # Base UI components
+│   │   ├── Button.tsx
+│   │   ├── Card.tsx
+│   │   ├── Badge.tsx
+│   │   └── ScoreRing.tsx
+│   ├── charts/                 # Recharts wrappers
+│   │   ├── ResponseTimeChart.tsx
+│   │   ├── MessageLengthChart.tsx
+│   │   └── InitiationDonut.tsx
+│   ├── upload/
+│   │   └── DropZone.tsx
+│   └── dashboard/
+│       ├── MetricCard.tsx
+│       └── AIInsightCard.tsx
+│
+├── lib/
+│   ├── parser.ts               # WhatsApp .txt parser
+│   ├── metrics.ts              # Metrics computation engine
+│   └── ai.ts                   # OpenAI API wrapper
+│
+├── server/                     # Express backend
+│   ├── index.js
+│   ├── routes/
+│   │   └── analyze.js
+│   └── utils/
+│       ├── parseChat.js
+│       └── computeMetrics.js
+│
+├── public/
+│   └── fonts/                  # Self-hosted fallback fonts
+│
+├── styles/
+│   └── globals.css             # CSS variables + Tailwind config
+│
+└── tailwind.config.ts
+```
+
+---
+
+## 🔒 Constraints & Edge Cases
+
+| Constraint | Handling |
+|---|---|
+| File size > 5MB | Reject at upload with clear error message |
+| Malformed chat lines | Skip silently, count skipped lines, warn user if > 20% |
+| < 20 messages | Warn user: "Not enough data for a meaningful roast" |
+| AI API failure | Retry once, then show metrics-only view with "AI insights unavailable" |
+| Group chats | Detect and warn: "Ghosted.AI works best with 1-on-1 conversations" |
+| Non-WhatsApp format | Show format guide with example of correct format |
+| User consent | Explicit privacy notice before upload; no data persistence |
+
+---
+
+## 🚫 Non-Goals (MVP)
+
+- No user authentication or accounts
+- No real-time chat or live monitoring
+- No social features (following, comparing with friends)
+- No custom ML model training
+- No multi-platform import (iMessage, Telegram) in v1
+- No backend database storage
+
+---
+
+## 📊 Success Metrics
+
+| Metric | Target (Month 1) |
+|---|---|
+| Analysis completion rate | > 70% of uploads reach results page |
+| Time on results page | > 90 seconds average |
+| Social share / screenshot rate | > 20% of result viewers |
+| Return visits | > 15% within 7 days |
+| Error / drop-off on upload | < 10% |
+
+---
+
+## 🚀 Future Scope
+
+| Feature | Description |
+|---|---|
+| 💬 "Should I Text Back?" Advisor | AI counselor that reads context and advises |
+| 📅 Relationship Timeline | Visual timeline of conversation highs and lows |
+| 🆚 Multi-Chat Comparison | Compare two people side by side |
+| 📱 Mobile App | Native iOS/Android with direct iMessage export |
+| 🎭 Shareable Meme Reports | One-tap shareable Instagram-story format card |
+| 🔮 Ghosting Probability Predictor | ML score: likelihood of being ghosted in next 7 days |
+
+---
+
+## 🧱 Design Tokens Reference
+
+```css
+:root {
+  /* Backgrounds */
+  --color-bg-primary: #030B14;
+  --color-bg-secondary: #071525;
+  --color-bg-elevated: #0D2137;
+  --color-surface: rgba(255, 255, 255, 0.04);
+  --color-border: rgba(255, 255, 255, 0.08);
+
+  /* Accents */
+  --color-teal: #00E5C0;
+  --color-teal-dim: #00B89A;
+  --color-green: #1DF08B;
+  --color-blue: #1A8FFF;
+  --color-red: #FF4560;
+  --color-yellow: #FFB830;
+
+  /* Text */
+  --color-text-primary: #F0F6FF;
+  --color-text-secondary: #7A9CBB;
+  --color-text-muted: #3E5A73;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Animation */
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 600ms;
+  --easing-default: cubic-bezier(0.16, 1, 0.3, 1);
+  --easing-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Spacing */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+```
+
+---
+
+*Ghosted.AI — because you deserved an explanation and you're going to build one yourself.*

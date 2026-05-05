@@ -1,0 +1,217 @@
+# 🧠 Ghosted.AI — Product Requirements Document (PRD)
+
+## 🏷️ Overview
+
+**Product Name:** Ghosted.AI
+**Tagline:** Turning emotional damage into analytics
+
+Ghosted.AI is a web application that analyzes chat conversations to detect emotional trends, interest levels, and ghosting patterns using AI and behavioral metrics.
+
+---
+
+## 🎯 Objective
+
+Build a fast, engaging web app that:
+
+* Analyzes chat conversations
+* Detects interest levels and engagement trends
+* Identifies signs of ghosting
+* Provides a brutally honest AI-generated summary
+
+---
+
+## 👤 Target Users
+
+* Gen Z / students
+* Dating app users
+* Overthinkers analyzing chats
+* Anyone who has ever been ghosted
+
+---
+
+## 🧩 Core Features
+
+### 1. Chat Upload
+
+* Upload exported chat files (.txt, e.g. WhatsApp)
+* Parse chat into structured format:
+
+  * Sender
+  * Timestamp
+  * Message
+
+---
+
+### 2. Conversation Metrics Engine
+
+#### Metrics Computed:
+
+* **Response Time**
+
+  * Average reply delay per participant
+  * Trend over time
+
+* **Message Length**
+
+  * Average words per message
+  * Detection of decreasing engagement
+
+* **Initiation Ratio**
+
+  * Who starts conversations more often
+
+* **Engagement Signals**
+
+  * Emoji usage
+  * Laughter indicators (lol, haha, etc.)
+
+---
+
+### 3. AI Analysis Engine
+
+Uses OpenAI API to generate insights.
+
+#### Output:
+
+* Interest Score (0–100)
+* More Invested Person
+* Ghosting Indicators
+* Summary (honest, slightly sarcastic tone)
+
+#### Output Format (Strict JSON):
+
+```json
+{
+  "interest_score": number,
+  "more_invested": "User | Other",
+  "ghosting_signs": [],
+  "summary": "string"
+}
+```
+
+---
+
+### 4. Visualization Dashboard
+
+#### Display:
+
+* Response Time Graph
+* Message Length Trend
+* Initiation Ratio
+
+#### AI Insight Card:
+
+* Interest Score
+* Summary
+* Key Red Flags
+
+---
+
+### 5. Results Output
+
+User receives:
+
+* Clear verdict
+* Visual analytics
+* AI-generated summary
+
+---
+
+## 🎨 UX / UI Requirements
+
+### Style:
+
+* Dark theme
+* Clean, minimal UI
+* Subtle sarcastic tone
+
+### Pages:
+
+#### Landing Page
+
+* Product tagline
+* Upload call-to-action
+
+#### Upload Page
+
+* Drag & drop chat file
+* Upload progress indicator
+
+#### Results Dashboard
+
+* Graphs section
+* AI insight card
+* Score visualization
+
+---
+
+## ⚙️ Tech Stack
+
+### Frontend
+
+* React.js / Next.js
+* Tailwind CSS
+* Recharts
+
+### Backend
+
+* Node.js + Express
+
+### AI Integration
+
+* OpenAI API
+
+### Database (Optional for MVP)
+
+* MongoDB
+
+---
+
+## 🔒 Constraints
+
+* Do not store chats without user consent
+* Limit file size (e.g., 5MB max)
+* Handle malformed chat formats gracefully
+
+---
+
+## 🚫 Non-Goals (MVP)
+
+* No authentication
+* No real-time chat
+* No social features
+* No custom ML model training
+
+---
+
+## 📊 Success Metrics
+
+* Completion rate of analysis flow
+* Time spent on results page
+* Shareability (screenshots, social sharing)
+* Repeat usage
+
+---
+
+## 🚀 Future Scope
+
+* “Should I text back?” AI advisor
+* Relationship timeline prediction
+* Multi-chat comparison
+* Mobile app
+* Shareable meme reports
+
+---
+
+## ⚡ Product Philosophy
+
+The product must:
+
+* Be fast
+* Be insightful
+* Be slightly uncomfortable (truth hits hard)
+
+If it feels too safe → it’s boring
+If it feels too harsh → users won’t return
+
+Balance honesty with humor.
