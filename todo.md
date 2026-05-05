@@ -9,14 +9,14 @@
 - [x] Configure environment variables (OpenAI API Key, ports)
 
 ## Phase 2: Frontend Foundation & Design System
-- [ ] Import and configure Google Fonts (Space Grotesk, Inter, JetBrains Mono)
-- [ ] Build base UI Components:
-  - [ ] Button variants (Primary, Secondary, Danger, Icon)
-  - [ ] Cards (Glass Card, Metric Card, Insight Card)
-  - [ ] Badge & Tag elements
-  - [ ] Progress Bar
-  - [ ] Score Ring / Circular Gauge
-- [ ] Implement core animations & transitions tokens
+- [x] Import and configure Google Fonts (Space Grotesk, Inter, JetBrains Mono)
+- [x] Build base UI Components:
+  - [x] Button variants (Primary, Secondary, Danger, Icon)
+  - [x] Cards (Glass Card, Metric Card, Insight Card)
+  - [x] Badge & Tag elements
+  - [x] Progress Bar
+  - [x] Score Ring / Circular Gauge
+- [x] Implement core animations & transitions tokens
 
 ## Phase 3: Core Pages Implementation
 - [ ] **Landing Page**
