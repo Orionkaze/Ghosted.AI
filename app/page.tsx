@@ -96,6 +96,52 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Features Section */}
+      <section id="features" className="py-24">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-display font-bold mb-4">Features</h2>
+            <p className="text-text-secondary">Everything you need to overanalyze your conversations.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: "fa-clock", title: "Response Time Tracking", desc: "See exactly how long it takes them to text back over time." },
+              { icon: "fa-scale-unbalanced", title: "Investment Ratio", desc: "Find out who is actually carrying the conversation." },
+              { icon: "fa-flag", title: "Red Flag Detection", desc: "Automated alerts for ghosting signals and fading interest." },
+              { icon: "fa-brain", title: "AI Brutal Honesty", desc: "GPT-4o delivers the truth you probably don't want to hear." }
+            ].map((feature, i) => (
+              <div key={i} className="bg-surface border border-border p-6 rounded-2xl hover:border-teal/50 transition-colors">
+                <i className={`fa-solid ${feature.icon} text-2xl text-teal mb-4`} />
+                <h3 className="font-display font-bold text-lg mb-2">{feature.title}</h3>
+                <p className="text-sm text-text-secondary">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-24 bg-bg-secondary/50 border-t border-border">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-display font-bold mb-4">Frequently Asked Questions</h2>
+            <p className="text-text-secondary">Because we know you're overthinking this.</p>
+          </div>
+          <div className="space-y-4">
+            {[
+              { q: "Is my chat data saved?", a: "No. Your chat is processed in memory and immediately discarded. We don't have a database, and we couldn't read your chats even if we wanted to." },
+              { q: "What chat platforms are supported?", a: "Currently, we only support WhatsApp .txt exports (without media). We're working on adding iMessage and Telegram support soon." },
+              { q: "How accurate is the AI?", a: "It's powered by GPT-4o, which is scarily good at reading between the lines. But remember, it's just an AI—don't make major life decisions based solely on its roast." }
+            ].map((faq, i) => (
+              <div key={i} className="bg-surface border border-border p-6 rounded-2xl">
+                <h3 className="font-medium text-lg mb-2 text-text-primary">{faq.q}</h3>
+                <p className="text-text-secondary">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="py-8 text-center text-text-muted border-t border-border mt-auto">
         <p className="flex items-center justify-center gap-2">
