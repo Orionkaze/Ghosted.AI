@@ -1,12 +1,12 @@
 # 🧠 Ghosted.AI — Project Todo List
 
 ## Phase 1: Project Setup & Infrastructure
-- [ ] Initialize Next.js 14 project (App Router)
-- [ ] Configure Tailwind CSS & CSS variables (colors, borders, gradients)
-- [ ] Install required dependencies (Recharts, Motion.dev, Font Awesome, etc.)
-- [ ] Setup Express.js backend server structure
-- [ ] Scaffold project file structure (`app/`, `components/`, `lib/`, `server/`)
-- [ ] Configure environment variables (OpenAI API Key, ports)
+- [x] Initialize Next.js 14 project (App Router)
+- [x] Configure Tailwind CSS & CSS variables (colors, borders, gradients)
+- [x] Install required dependencies (Recharts, Motion.dev, Font Awesome, etc.)
+- [x] Setup Express.js backend server structure
+- [x] Scaffold project file structure (`app/`, `components/`, `lib/`, `server/`)
+- [x] Configure environment variables (OpenAI API Key, ports)
 
 ## Phase 2: Frontend Foundation & Design System
 - [ ] Import and configure Google Fonts (Space Grotesk, Inter, JetBrains Mono)
