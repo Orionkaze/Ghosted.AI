@@ -44,20 +44,20 @@
   - [x] Validate and enforce strict JSON output
 
 ## Phase 5: Data Visualization & Integration
-- [ ] Build Recharts components:
-  - [ ] Response Time Trend (Line chart)
-  - [ ] Message Length Trend (Area chart)
-  - [ ] Initiation Ratio (Donut chart / Bar)
-- [ ] Integrate frontend Dashboard with `/analyze` backend response
-- [ ] Wire up Metric Cards with actual data (Interest Score, More Invested, etc.)
-- [ ] Populate AI Insight Card with OpenAI summary and Red Flag tags
+- [x] Build Recharts components:
+  - [x] Response Time Trend (Line chart)
+  - [x] Message Length Trend (Area chart)
+  - [x] Initiation Ratio (Donut chart / Bar)
+- [x] Integrate frontend Dashboard with `/analyze` backend response
+- [x] Wire up Metric Cards with actual data (Interest Score, More Invested, etc.)
+- [x] Populate AI Insight Card with OpenAI summary and Red Flag tags
 
 ## Phase 6: Polish, Animations & Edge Cases
-- [ ] Implement Motion.dev animations (Page transitions, score counter, hover effects)
-- [ ] Handle constraints and edge cases:
-  - [ ] File size > 5MB validation
-  - [ ] Insufficient messages (< 20) warning
-  - [ ] Malformed chat lines fallback
-  - [ ] API failure retries and fallbacks
-- [ ] Mobile responsiveness review and adjustments
-- [ ] Final UI polish and testing
+- [x] Implement Motion.dev animations (Page transitions, score counter, hover effects)
+- [x] Handle constraints and edge cases:
+  - [x] File size > 5MB validation
+  - [x] Insufficient messages (< 20) warning
+  - [x] Malformed chat lines fallback
+  - [x] API failure retries and fallbacks
+- [x] Mobile responsiveness review and adjustments
+- [x] Final UI polish and testing
