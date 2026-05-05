@@ -19,17 +19,17 @@
 - [x] Implement core animations & transitions tokens
 
 ## Phase 3: Core Pages Implementation
-- [ ] **Landing Page**
-  - [ ] Hero section with headline and CTA
-  - [ ] "How It Works" 3-step section
-  - [ ] Animated background effects
-- [ ] **Upload Page**
-  - [ ] Drag-and-drop file upload zone
-  - [ ] Upload states (Default, Drag Over, Uploading, Complete, Error)
-- [ ] **Results Dashboard (Shell)**
-  - [ ] Dashboard layout with metric cards placeholders
-  - [ ] Charts section placeholders
-  - [ ] AI Insight card placeholder
+- [x] **Landing Page**
+  - [x] Hero section with headline and CTA
+  - [x] "How It Works" 3-step section
+  - [x] Animated background effects
+- [x] **Upload Page**
+  - [x] Drag-and-drop file upload zone
+  - [x] Upload states (Default, Drag Over, Uploading, Complete, Error)
+- [x] **Results Dashboard (Shell)**
+  - [x] Dashboard layout with metric cards placeholders
+  - [x] Charts section placeholders
+  - [x] AI Insight card placeholder
 
 ## Phase 4: Core Logic & Backend Implementation
 - [ ] **Backend (Express)**
