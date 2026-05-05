@@ -23,7 +23,7 @@ export function DropZone() {
     setIsDragOver(false);
   }, []);
 
-  const validateAndUpload = (file: File) => {
+  const validateAndUpload = async (file: File) => {
     setError(null);
     if (!file.name.endsWith(".txt")) {
       setError("Please upload a .txt file (WhatsApp export).");
@@ -35,19 +35,38 @@ export function DropZone() {
     }
 
     setIsUploading(true);
-    // Mock upload progress
-    let p = 0;
-    const interval = setInterval(() => {
-      p += 10;
-      setProgress(p);
-      if (p >= 100) {
-        clearInterval(interval);
-        setTimeout(() => {
-          // Navigate to results page after fake upload
-          router.push("/results");
-        }, 800);
+    setProgress(20);
+
+    const formData = new FormData();
+    formData.append("chatFile", file);
+
+    try {
+      const response = await fetch("http://localhost:3001/api/analyze", {
+        method: "POST",
+        body: formData,
+      });
+
+      setProgress(80);
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Analysis failed");
       }
-    }, 200);
+
+      const data = await response.json();
+      setProgress(100);
+      
+      localStorage.setItem("ghosted_ai_results", JSON.stringify(data));
+      
+      setTimeout(() => {
+        router.push("/results");
+      }, 500);
+
+    } catch (err: any) {
+      setError(err.message || "An error occurred during upload.");
+      setIsUploading(false);
+      setProgress(0);
+    }
   };
 
   const handleDrop = useCallback((e: React.DragEvent) => {
