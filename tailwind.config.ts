@@ -9,8 +9,26 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        bg: {
+          primary: "var(--color-bg-primary)",
+          secondary: "var(--color-bg-secondary)",
+          elevated: "var(--color-bg-elevated)",
+        },
+        surface: "var(--color-surface)",
+        border: "var(--color-border)",
+        teal: {
+          DEFAULT: "var(--color-teal)",
+          dim: "var(--color-teal-dim)",
+        },
+        green: "var(--color-green)",
+        blue: "var(--color-blue)",
+        red: "var(--color-red)",
+        yellow: "var(--color-yellow)",
+        text: {
+          primary: "var(--color-text-primary)",
+          secondary: "var(--color-text-secondary)",
+          muted: "var(--color-text-muted)",
+        }
       },
     },
   },
