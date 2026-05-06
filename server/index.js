@@ -16,6 +16,10 @@ app.get('/health', (req, res) => {
 const analyzeRoute = require('./routes/analyze');
 app.use('/api/analyze', analyzeRoute);
 
+// Interactive coach route
+const coachRoute = require('./routes/coach');
+app.use('/api/coach', coachRoute);
+
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
