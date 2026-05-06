@@ -163,6 +163,14 @@ export default function ResultsPage() {
               <div className="absolute top-0 left-0 w-1 h-full bg-teal" />
               "{aiSummary}"
             </blockquote>
+            
+            <Link 
+              href="/results/action-plan"
+              className="inline-flex w-fit items-center gap-2 px-6 py-3 rounded-xl bg-teal/10 text-teal font-medium hover:bg-teal/20 transition-colors border border-teal/20 mt-4"
+            >
+              <i className="fa-solid fa-wand-magic-sparkles"></i>
+              Get Your Action Plan
+            </Link>
           </div>
           
           <div className="w-full lg:w-80 space-y-4 bg-bg-primary/50 p-6 rounded-2xl border border-border">
