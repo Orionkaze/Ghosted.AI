@@ -3,11 +3,10 @@ const parseChat = (rawText) => {
   const lines = rawText.split('\n');
   const messages = [];
   
-  // Regex patterns for different WhatsApp formats
-  // Format 1: [DD/MM/YYYY, HH:MM:SS] Sender: Message
-  const regex1 = /^\[(\d{1,2}\/\d{1,2}\/\d{2,4}), (\d{1,2}:\d{2}:\d{2}(?: [APM]{2})?)\] (.*?): (.*)$/;
-  // Format 2: DD/MM/YY, HH:MM - Sender: Message
-  const regex2 = /^(\d{1,2}\/\d{1,2}\/\d{2,4}), (\d{1,2}:\d{2}(?: [a-zA-Z]{2})?) - (.*?): (.*)$/;
+  // Format 1: [DD/MM/YYYY, HH:MM:SS] Sender: Message  (iOS)
+  const regex1 = /^\[([^\]]+)\]\s+([^:]+):\s+(.*)$/;
+  // Format 2: DD/MM/YY, HH:MM - Sender: Message (Android)
+  const regex2 = /^([0-9\/\-\.,\s:]+(?:[a-zA-Z\.]+)?)\s+-\s+([^:]+):\s+(.*)$/;
 
   let currentMessage = null;
 
@@ -18,22 +17,30 @@ const parseChat = (rawText) => {
     let match = line.match(regex1) || line.match(regex2);
 
     if (match) {
+      // Check if it's a system message (sender length too long or contains system words)
+      const sender = match[2].trim();
+      if (
+        sender.length > 50 || 
+        sender.includes(" changed ") || 
+        sender.includes(" added ") || 
+        sender.includes(" removed ") ||
+        sender.includes(" left")
+      ) {
+        continue;
+      }
+
       if (currentMessage) {
         messages.push(currentMessage);
       }
 
-      const [, datePart, timePart, sender, text] = match;
-      
-      // Attempt to parse date to a timestamp, very roughly
-      // In a real app we'd use date-fns or similar, but for MVP we rely on sequential order 
-      // and relative time gaps, so exact Date object isn't strictly necessary if we parse it carefully,
-      // but let's just store the raw strings and calculate rough Date objects later in metrics.
+      const dateTime = match[1].trim();
+      const text = match[3].trim();
       
       currentMessage = {
-        sender: sender.trim(),
-        timestamp: `${datePart} ${timePart}`,
-        text: text.trim(),
-        wordCount: text.trim().split(/\s+/).length,
+        sender: sender,
+        timestamp: dateTime,
+        text: text,
+        wordCount: text.split(/\s+/).length,
       };
     } else {
       // Continuation of a multiline message
