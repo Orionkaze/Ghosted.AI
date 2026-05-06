@@ -35,7 +35,7 @@ export default function LandingPage() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border text-xs font-medium text-text-secondary mb-4">
             <span className="flex h-2 w-2 rounded-full bg-teal animate-pulse" />
-            Gemini Powered Analysis
+            Ghost Powered Analysis
           </div>
           
           <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight tracking-tight">

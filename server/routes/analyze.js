@@ -19,12 +19,13 @@ router.post('/', upload.single('chatFile'), async (req, res) => {
       return res.status(400).json({ error: 'No file uploaded' });
     }
 
-    const rawText = req.file.buffer.toString('utf-8');
+    const rawText = req.file.buffer.toString('utf-8').replace(/\0/g, '');
     
     // Step 1: Parse
     const messages = parseChat(rawText);
-    if (messages.length < 20) {
-      return res.status(400).json({ error: 'Not enough data for a meaningful analysis. Minimum 20 messages required.' });
+    if (messages.length < 5) {
+      const firstLines = rawText.split(/\r\n|\n|\r/).slice(0, 3).map(l => l.trim()).join(' | ');
+      return res.status(400).json({ error: `Debug: Parser found ${messages.length} msgs. Lines start with: ${firstLines}` });
     }
 
     // Step 2: Metrics
